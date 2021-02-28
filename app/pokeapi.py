@@ -14,7 +14,7 @@ def get_capture_rate(pokemon):
 def get_base_hp(pokemon):
     page = requests.get(f"https://www.pokepedia.fr/{pokemon.lower()}")
     html_tree = html.fromstring(page.content)
-    etree_object = html_tree.xpath("//*[@id='mw-content-text']/div/table[16]/tbody/tr[4]/td[2]/text()")
+    etree_object = html_tree.xpath("(//td[contains(., 'PV')]/following-sibling::td)[1]/text()")
     base_hp = int(str(etree_object[0]).replace("\n", ""))
 
     return base_hp
