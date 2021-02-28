@@ -7,7 +7,7 @@ def calculate_a(actual_hp, max_hp, rate, ball, status):
 
 
 def calculate_max_hp(base_hp, level):
-    max_hp = (((2 * base_hp + 31 + (127 / 4)) * level) / 100) + level + 10
+    max_hp = (((2 * base_hp + 31) * level) / 100) + level + 10
     return round(max_hp, 0)
 
 
