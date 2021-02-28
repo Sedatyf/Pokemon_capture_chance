@@ -26,7 +26,7 @@ def get_bonus_ball():
 
     while not is_found:
         ball = input("Which ball will you use? ")
-        if ball.lower() == "poke ball":
+        if ball.lower() == "poke ball" or ball.lower() == "poké ball":
             bonus_ball = 1
             is_found = True
         elif ball.lower() == "super ball":
