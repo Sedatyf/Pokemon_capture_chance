@@ -1,9 +1,9 @@
 import pokeapi
 import calculate
 
-pokemon = input("Which pokemon do you want to check your capture chance? ")
-level = int(input("What is the Pokemon's level? "))
-percent_hp = int(input("How many HP does the Pokemon have? (In percent) "))
+pokemon = pokeapi.get_pokemon()
+level = pokeapi.get_level()
+percent_hp = pokeapi.get_current_hp()
 ball = pokeapi.get_bonus_ball()
 status = pokeapi.get_bonus_status()
 

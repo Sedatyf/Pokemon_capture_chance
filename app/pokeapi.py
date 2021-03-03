@@ -2,6 +2,45 @@ from lxml import html, etree
 import requests
 
 
+def get_pokemon():
+    is_pokemon = False
+    while not is_pokemon:
+        pokemon = input("Which pokemon do you want to check your capture chance? ")
+        page = requests.get(f"https://www.pokepedia.fr/{pokemon.lower()}")
+        try:
+            page.raise_for_status()
+        except requests.HTTPError as _:
+            print("[!] Pokemon's name was not found, be sure to type it correctly\n")
+            continue
+        is_pokemon = True
+    return pokemon
+        
+
+
+def get_level():
+    is_value = False
+    while not is_value:
+        try:
+            level = int(input("What is the Pokemon's level? "))
+        except ValueError as _:
+            print("[!] You must precise a number without letters\n")
+            continue
+        is_value = True
+    return level
+
+
+def get_current_hp():
+    is_value = False
+    while not is_value:
+        try:
+            percent = int(input("How many HP does the Pokemon have? (In percent) "))
+        except ValueError as _:
+            print("[!] You must precise a number without letters\n")
+            continue
+        is_value = True
+    return percent
+
+
 def get_capture_rate(pokemon):
     page = requests.get(f"https://www.pokepedia.fr/{pokemon.lower()}")
     html_tree = html.fromstring(page.content)
@@ -36,7 +75,7 @@ def get_bonus_ball():
             bonus_ball = 2
             is_found = True
         else:
-            print("Your ball's choice wasn't recognized. Please choose between Poke ball, Super ball or Hyper ball.")
+            print("Your ball's choice wasn't recognized. Please choose between Poke ball, Super ball or Hyper ball.\n")
     return bonus_ball
 
 
@@ -56,6 +95,6 @@ def get_bonus_status():
             bonus_status = 1
             is_found = True
         else:
-            print("Your status' choice wasnt't recognized. Please type status with its short name, like it appears on the Pokemon life.")
+            print("Your status' choice wasnt't recognized. Please type status with its short name, like it appears on the Pokemon life.\n")
     return bonus_status
 
