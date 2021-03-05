@@ -1,5 +1,5 @@
-import pokeapi
-import calculate
+import package.pokeapi as pokeapi
+import package.calculate as calculate
 
 pokemon = pokeapi.get_pokemon()
 level = pokeapi.get_level()
