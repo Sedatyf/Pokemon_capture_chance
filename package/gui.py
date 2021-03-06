@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtCore
+from PySide2 import QtWidgets, QtCore, QtGui
 import package.pokeapi as pokeapi
 import package.calculate as calculate
 
@@ -8,6 +8,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.setWindowTitle("Calculate Pokemon capture chance")
         self.setMinimumSize(355, 320)
+        self.setWindowIcon(QtGui.QIcon("img/balls/pokeball.png"))
 
         self.layout = QtWidgets.QGridLayout(self)
 
@@ -55,14 +56,24 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createBallGroup(self, layout_variable):
-        # ICON (voir internet)
         self.bgroupBall = QtWidgets.QButtonGroup(self)
 
         self.label_ball = QtWidgets.QLabel("What Pokeball will you use?")
 
-        self.radio_pokeball = QtWidgets.QRadioButton("Poke Ball")
-        self.radio_superball = QtWidgets.QRadioButton("Super Ball")
-        self.radio_hyperball = QtWidgets.QRadioButton("Hyper Ball")
+        self.radio_pokeball = QtWidgets.QRadioButton()
+        self.radio_superball = QtWidgets.QRadioButton()
+        self.radio_hyperball = QtWidgets.QRadioButton()
+
+        self.icon_pokeball = QtGui.QIcon("img/balls/pokeball.png")
+        self.icon_superball = QtGui.QIcon("img/balls/superball.png")
+        self.icon_hyperball = QtGui.QIcon("img/balls/hyperball.png")
+
+        self.radio_pokeball.setIcon(self.icon_pokeball)
+        self.radio_pokeball.setIconSize(QtCore.QSize(30, 30))
+        self.radio_superball.setIcon(self.icon_superball)
+        self.radio_superball.setIconSize(QtCore.QSize(30, 30))
+        self.radio_hyperball.setIcon(self.icon_hyperball)
+        self.radio_hyperball.setIconSize(QtCore.QSize(30, 30))
 
         self.radio_pokeball.setChecked(True)
 
@@ -86,12 +97,29 @@ class MainWindow(QtWidgets.QWidget):
 
         self.label_status = QtWidgets.QLabel("Does the Pokemon suffor from a status?")
 
-        self.radio_status_brn = QtWidgets.QRadioButton("BRN")
-        self.radio_status_par = QtWidgets.QRadioButton("PAR")
-        self.radio_status_psn = QtWidgets.QRadioButton("PSN")
-        self.radio_status_frz = QtWidgets.QRadioButton("FRZ")
-        self.radio_status_slp = QtWidgets.QRadioButton("SLP")
+        self.radio_status_brn = QtWidgets.QRadioButton()
+        self.radio_status_par = QtWidgets.QRadioButton()
+        self.radio_status_psn = QtWidgets.QRadioButton()
+        self.radio_status_frz = QtWidgets.QRadioButton()
+        self.radio_status_slp = QtWidgets.QRadioButton()
         self.radio_status_none = QtWidgets.QRadioButton("None")
+
+        self.icon_brn = QtGui.QIcon("img/status/status_brn.png")
+        self.icon_par = QtGui.QIcon("img/status/status_par.png")
+        self.icon_psn = QtGui.QIcon("img/status/status_psn.png")
+        self.icon_frz = QtGui.QIcon("img/status/status_frz.png")
+        self.icon_slp = QtGui.QIcon("img/status/status_slp.png")
+
+        self.radio_status_brn.setIcon(self.icon_brn)
+        self.radio_status_brn.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_par.setIcon(self.icon_par)
+        self.radio_status_par.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_psn.setIcon(self.icon_psn)
+        self.radio_status_psn.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_frz.setIcon(self.icon_frz)
+        self.radio_status_frz.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_slp.setIcon(self.icon_slp)
+        self.radio_status_slp.setIconSize(QtCore.QSize(50, 20))
 
         self.radio_status_none.setChecked(True)
 
