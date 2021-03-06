@@ -124,12 +124,11 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createResultBox(self, layout_variable):
-        self.label_result = QtWidgets.QLabel("Result")
-        self.le_result = QtWidgets.QLineEdit()
-        self.le_result.setReadOnly(True)
+        self.te_result = QtWidgets.QTextEdit()
+        self.te_result.setReadOnly(True)
+        self.te_result.setFixedHeight(50)
 
-        layout_variable.addWidget(self.label_result, 12, 0, 1, 6)
-        layout_variable.addWidget(self.le_result, 13, 0, 2, 6)
+        layout_variable.addWidget(self.te_result, 12, 0, 1, 6)
 
 
     def connectCalculateButton(self):
@@ -153,7 +152,7 @@ class MainWindow(QtWidgets.QWidget):
         a = calculate.calculate_a(current_hp, max_hp, capture_rate, ball, status)
 
         if a >= 255:
-            self.le_result.setText(f"You have a 100% chance to capture {pokemon_name}!")
+            self.te_result.setText(f"You have a 100% chance to capture {pokemon_name}!")
         else:
             p = calculate.calculate_capture_chance(a)
-            self.le_result.setText(f"You have, approximately, a {p * 100}% chance to capture {pokemon_name} per ball with the chosen ball.")
+            self.te_result.setText(f"You have, approximately, a {p * 100}% chance to capture {pokemon_name} per ball with the chosen ball.")
