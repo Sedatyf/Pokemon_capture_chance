@@ -20,7 +20,7 @@ class MainWindow(QtWidgets.QWidget):
         self.createCalculateButton(self.layout)
         self.createResultBox(self.layout)
 
-        self.connectCalculateButton()
+        self.connectWidgets()
 
 
     def createNamePokemon(self, layout_variable):
@@ -50,6 +50,7 @@ class MainWindow(QtWidgets.QWidget):
         self.slider_current_hp.setMaximum(100)
         self.slider_current_hp.setMinimum(0)
         self.slider_current_hp.setValue(100)
+        self.slider_current_hp.setStyleSheet("selection-background-color: rgb(0, 255, 0)")
 
         layout_variable.addWidget(self.label_hp, 4, 0, 1, 6)
         layout_variable.addWidget(self.slider_current_hp, 5, 0, 1, 6)
@@ -92,7 +93,6 @@ class MainWindow(QtWidgets.QWidget):
     
 
     def createStatusGroup(self, layout_variable):
-        # ICON (voir internet)
         self.bgroupStatus = QtWidgets.QButtonGroup(self)
 
         self.label_status = QtWidgets.QLabel("Does the Pokemon suffer from a status?")
@@ -159,9 +159,19 @@ class MainWindow(QtWidgets.QWidget):
         layout_variable.addWidget(self.te_result, 12, 0, 1, 6)
 
 
-    def connectCalculateButton(self):
+    def connectWidgets(self):
+        self.slider_current_hp.valueChanged.connect(self.changeColorHP)
         self.button_calculate.clicked.connect(self.calculate)
     
+
+    def changeColorHP(self):
+        if 50 <= self.slider_current_hp.value() <= 100:
+            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(0, 255, 0)")
+        elif 20 <= self.slider_current_hp.value() < 50:
+            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(255, 153, 0)")
+        elif 0 <= self.slider_current_hp.value() < 20:
+            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(255, 0, 0)")
+
 
     def calculate(self):
         pokemon_name = self.input_pokemon_name.text()
