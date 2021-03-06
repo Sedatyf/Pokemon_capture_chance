@@ -1,6 +1,0 @@
-# VSCode folder
-.vscode/
-
-# Python
-__pycache__/
-env/
