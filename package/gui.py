@@ -1,4 +1,5 @@
 from PySide2 import QtWidgets, QtCore, QtGui
+import platform
 import package.pokeapi as pokeapi
 import package.calculate as calculate
 
@@ -160,17 +161,50 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def connectWidgets(self):
-        self.slider_current_hp.valueChanged.connect(self.changeColorHP)
+        if platform.system() == "Linux":
+            self.slider_current_hp.valueChanged.connect(self.changeColorHPLinux)
+        elif platform.system() == "Windows":
+            self.slider_current_hp.valueChanged.connect(self.changeColorHPWindows)
         self.button_calculate.clicked.connect(self.calculate)
     
 
-    def changeColorHP(self):
+    def changeColorHPLinux(self):
+        color = ""
         if 50 <= self.slider_current_hp.value() <= 100:
-            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(0, 255, 0)")
+            color = "rgb(0, 255, 0)"
         elif 20 <= self.slider_current_hp.value() < 50:
-            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(255, 153, 0)")
+            color = "rgb(255, 153, 0)"
         elif 0 <= self.slider_current_hp.value() < 20:
-            self.slider_current_hp.setStyleSheet("selection-background-color: rgb(255, 0, 0)")
+            color = "rgb(255, 0, 0)"
+        
+        self.slider_current_hp.setStyleSheet(f"selection-background-color: {color}")
+
+    def changeColorHPWindows(self):
+        color = ""
+        if 50 <= self.slider_current_hp.value() <= 100:
+            color = "rgb(0, 255, 0)"
+        elif 20 <= self.slider_current_hp.value() < 50:
+            color = "rgb(255, 153, 0)"
+        elif 0 <= self.slider_current_hp.value() < 20:
+            color = "rgb(255, 0, 0)"
+
+        style = """
+            QSlider::groove:horizontal {
+            border: 1px solid #999999;
+            height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+            background: """ + color + """
+            margin: 2px 0;
+            }
+
+            QSlider::handle:horizontal {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+            border: 1px solid #5c5c5c;
+            width: 18px;
+            margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+            border-radius: 3px;
+            }"""
+        
+        self.slider_current_hp.setStyleSheet(style)
 
 
     def calculate(self):
