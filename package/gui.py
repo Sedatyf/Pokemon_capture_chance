@@ -178,7 +178,7 @@ class MainWindow(QtWidgets.QWidget):
             style = """
             QSlider::groove:horizontal {
                 border: 1px solid #D6D6D6;
-                height: 2px
+                height: 2px;
                 background: """ + color + """;
             }
             QSlider::handle:horizontal {
