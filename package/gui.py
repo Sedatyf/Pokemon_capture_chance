@@ -192,7 +192,7 @@ class MainWindow(QtWidgets.QWidget):
             QSlider::groove:horizontal {
             border: 1px solid #999999;
             height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-            background: """ + color + """
+            background: """ + color + """;
             margin: 2px 0;
             }
 
