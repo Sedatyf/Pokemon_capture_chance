@@ -11,16 +11,13 @@ class MainWindow(QtWidgets.QWidget):
         self.layout = QtWidgets.QGridLayout(self)
 
         self.createNamePokemon(self.layout)
-
         self.createSliderHP(self.layout)
-
         self.createBallGroup(self.layout)
-
         self.createStatusGroup(self.layout)
-
         self.createCalculateButton(self.layout)
-
         self.createResultBox(self.layout)
+
+        self.connectCalculateButton()
 
 
     def createNamePokemon(self, layout_variable):
@@ -60,6 +57,10 @@ class MainWindow(QtWidgets.QWidget):
         self.bgroupBall.addButton(self.radio_superball)
         self.bgroupBall.addButton(self.radio_hyperball)
 
+        self.bgroupBall.setId(self.radio_pokeball, 1)
+        self.bgroupBall.setId(self.radio_superball, 2)
+        self.bgroupBall.setId(self.radio_hyperball, 3)
+
         layout_variable.addWidget(self.label_ball, 4, 0, 1, 6)
         layout_variable.addWidget(self.radio_pokeball, 5, 0, 1, 1)
         layout_variable.addWidget(self.radio_superball, 5, 1, 1, 1)
@@ -87,6 +88,13 @@ class MainWindow(QtWidgets.QWidget):
         self.bgroupStatus.addButton(self.radio_status_slp)
         self.bgroupStatus.addButton(self.radio_status_none)
 
+        self.bgroupStatus.setId(self.radio_status_brn, 1)
+        self.bgroupStatus.setId(self.radio_status_par, 2)
+        self.bgroupStatus.setId(self.radio_status_psn, 3)
+        self.bgroupStatus.setId(self.radio_status_frz, 4)
+        self.bgroupStatus.setId(self.radio_status_slp, 5)
+        self.bgroupStatus.setId(self.radio_status_none, 6)
+
         layout_variable.addWidget(self.label_status, 6, 0, 1, 6)
         layout_variable.addWidget(self.radio_status_brn, 7, 0, 1, 1)
         layout_variable.addWidget(self.radio_status_par, 7, 1, 1, 1)
@@ -108,4 +116,17 @@ class MainWindow(QtWidgets.QWidget):
 
         layout_variable.addWidget(self.label_result, 10, 0, 1, 6)
         layout_variable.addWidget(self.le_result, 11, 0, 1, 6)
+
+
+    def connectCalculateButton(self):
+        self.button_calculate.clicked.connect(self.calculate)
+    
+
+    def calculate(self):
+        pokemon_name = self.input_pokemon_name.text()
+        capture_rate = pokeapi.get_capture_rate(pokemon_name)
+        ball = self.bgroupBall.checkedId()
+        status = self.bgroupStatus.checkedId()
+        current_hp = self.slider_current_hp.sliderPosition()
+        print(current_hp)
 
