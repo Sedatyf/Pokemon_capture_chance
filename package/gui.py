@@ -10,7 +10,6 @@ class MainWindow(QtWidgets.QWidget):
         self.setWindowTitle("Calculate Pokemon capture chance")
         self.setMinimumSize(355, 320)
         self.setWindowIcon(QtGui.QIcon("img/balls/pokeball.png"))
-        self.setStyleSheet("background-color: rgb(22, 25, 37)")
 
         self.layout = QtWidgets.QGridLayout(self)
 
