@@ -69,11 +69,11 @@ class MainWindow(QtWidgets.QWidget):
         self.icon_hyperball = QtGui.QIcon("img/balls/hyperball.png")
 
         self.radio_pokeball.setIcon(self.icon_pokeball)
-        self.radio_pokeball.setIconSize(QtCore.QSize(30, 30))
+        self.radio_pokeball.setIconSize(QtCore.QSize(36, 36))
         self.radio_superball.setIcon(self.icon_superball)
-        self.radio_superball.setIconSize(QtCore.QSize(30, 30))
+        self.radio_superball.setIconSize(QtCore.QSize(36, 36))
         self.radio_hyperball.setIcon(self.icon_hyperball)
-        self.radio_hyperball.setIconSize(QtCore.QSize(30, 30))
+        self.radio_hyperball.setIconSize(QtCore.QSize(36, 36))
 
         self.radio_pokeball.setChecked(True)
 
@@ -111,15 +111,15 @@ class MainWindow(QtWidgets.QWidget):
         self.icon_slp = QtGui.QIcon("img/status/status_slp.png")
 
         self.radio_status_brn.setIcon(self.icon_brn)
-        self.radio_status_brn.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_brn.setIconSize(QtCore.QSize(60, 24))
         self.radio_status_par.setIcon(self.icon_par)
-        self.radio_status_par.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_par.setIconSize(QtCore.QSize(60, 24))
         self.radio_status_psn.setIcon(self.icon_psn)
-        self.radio_status_psn.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_psn.setIconSize(QtCore.QSize(60, 24))
         self.radio_status_frz.setIcon(self.icon_frz)
-        self.radio_status_frz.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_frz.setIconSize(QtCore.QSize(60, 24))
         self.radio_status_slp.setIcon(self.icon_slp)
-        self.radio_status_slp.setIconSize(QtCore.QSize(50, 20))
+        self.radio_status_slp.setIconSize(QtCore.QSize(60, 24))
 
         self.radio_status_none.setChecked(True)
 
