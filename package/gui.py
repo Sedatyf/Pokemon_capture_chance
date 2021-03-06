@@ -37,10 +37,10 @@ class MainWindow(QtWidgets.QWidget):
         # SPINBOX ??
         self.label_level = QtWidgets.QLabel("What's the Pokemon's level?")
 
-        self.input_pokemon_level = QtWidgets.QLineEdit()
+        self.input_pokemon_level = QtWidgets.QSpinBox()
         
         layout_variable.addWidget(self.label_level, 2, 0, 1, 6)
-        layout_variable.addWidget(self.input_pokemon_level, 3, 0, 1, 6)
+        layout_variable.addWidget(self.input_pokemon_level, 3, 0, 1, 1)
 
 
     def createSliderHP(self, layout_variable):
