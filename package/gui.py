@@ -27,7 +27,7 @@ class MainWindow(QtWidgets.QWidget):
         self.label_pokemon = QtWidgets.QLabel("What's the Pokemon's name?")
 
         self.input_pokemon_name = QtWidgets.QLineEdit()
-        self.input_pokemon_name.setPlaceholderText("Enter here the Pokemon name (French version)")
+        self.input_pokemon_name.setPlaceholderText("Enter here the Pokemon's name (French version)")
 
         layout_variable.addWidget(self.label_pokemon, 0, 0, 1, 6)
         layout_variable.addWidget(self.input_pokemon_name, 1, 0, 1, 6)
@@ -58,7 +58,7 @@ class MainWindow(QtWidgets.QWidget):
     def createBallGroup(self, layout_variable):
         self.bgroupBall = QtWidgets.QButtonGroup(self)
 
-        self.label_ball = QtWidgets.QLabel("What Pokeball will you use?")
+        self.label_ball = QtWidgets.QLabel("Which Pokeball will you use?")
 
         self.radio_pokeball = QtWidgets.QRadioButton()
         self.radio_superball = QtWidgets.QRadioButton()
@@ -95,7 +95,7 @@ class MainWindow(QtWidgets.QWidget):
         # ICON (voir internet)
         self.bgroupStatus = QtWidgets.QButtonGroup(self)
 
-        self.label_status = QtWidgets.QLabel("Does the Pokemon suffor from a status?")
+        self.label_status = QtWidgets.QLabel("Does the Pokemon suffer from a status?")
 
         self.radio_status_brn = QtWidgets.QRadioButton()
         self.radio_status_par = QtWidgets.QRadioButton()
