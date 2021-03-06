@@ -161,8 +161,7 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def connectWidgets(self):
-        if platform.system() == "Linux":
-            self.slider_current_hp.valueChanged.connect(self.changeColorHP)
+        self.slider_current_hp.valueChanged.connect(self.changeColorHP)
         self.button_calculate.clicked.connect(self.calculate)
     
 
