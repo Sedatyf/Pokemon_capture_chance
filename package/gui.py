@@ -11,6 +11,7 @@ class MainWindow(QtWidgets.QWidget):
         self.layout = QtWidgets.QGridLayout(self)
 
         self.createNamePokemon(self.layout)
+        self.createLevel(self.layout)
         self.createSliderHP(self.layout)
         self.createBallGroup(self.layout)
         self.createStatusGroup(self.layout)
@@ -21,13 +22,22 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createNamePokemon(self, layout_variable):
-        self.label_pokemon = QtWidgets.QLabel("What's the Pokemon name?")
+        self.label_pokemon = QtWidgets.QLabel("What's the Pokemon's name?")
 
         self.input_pokemon_name = QtWidgets.QLineEdit()
         self.input_pokemon_name.setPlaceholderText("Enter here the Pokemon name (French version)")
 
         layout_variable.addWidget(self.label_pokemon, 0, 0, 1, 6)
         layout_variable.addWidget(self.input_pokemon_name, 1, 0, 1, 6)
+
+
+    def createLevel(self, layout_variable):
+        self.label_level = QtWidgets.QLabel("What's the Pokemon's level?")
+
+        self.input_pokemon_level = QtWidgets.QLineEdit()
+        
+        layout_variable.addWidget(self.label_level, 2, 0, 1, 6)
+        layout_variable.addWidget(self.input_pokemon_level, 3, 0, 1, 6)
 
 
     def createSliderHP(self, layout_variable):
@@ -38,8 +48,8 @@ class MainWindow(QtWidgets.QWidget):
         self.slider_current_hp.setMinimum(0)
         self.slider_current_hp.setValue(100)
 
-        layout_variable.addWidget(self.label_hp, 2, 0, 1, 6)
-        layout_variable.addWidget(self.slider_current_hp, 3, 0, 1, 6)
+        layout_variable.addWidget(self.label_hp, 4, 0, 1, 6)
+        layout_variable.addWidget(self.slider_current_hp, 5, 0, 1, 6)
 
 
     def createBallGroup(self, layout_variable):
@@ -61,10 +71,10 @@ class MainWindow(QtWidgets.QWidget):
         self.bgroupBall.setId(self.radio_superball, 2)
         self.bgroupBall.setId(self.radio_hyperball, 3)
 
-        layout_variable.addWidget(self.label_ball, 4, 0, 1, 6)
-        layout_variable.addWidget(self.radio_pokeball, 5, 0, 1, 1)
-        layout_variable.addWidget(self.radio_superball, 5, 1, 1, 1)
-        layout_variable.addWidget(self.radio_hyperball, 5, 2, 1, 1)
+        layout_variable.addWidget(self.label_ball, 6, 0, 1, 6)
+        layout_variable.addWidget(self.radio_pokeball, 7, 0, 1, 1)
+        layout_variable.addWidget(self.radio_superball, 7, 1, 1, 1)
+        layout_variable.addWidget(self.radio_hyperball, 7, 2, 1, 1)
     
 
     def createStatusGroup(self, layout_variable):
@@ -95,18 +105,18 @@ class MainWindow(QtWidgets.QWidget):
         self.bgroupStatus.setId(self.radio_status_slp, 5)
         self.bgroupStatus.setId(self.radio_status_none, 6)
 
-        layout_variable.addWidget(self.label_status, 6, 0, 1, 6)
-        layout_variable.addWidget(self.radio_status_brn, 7, 0, 1, 1)
-        layout_variable.addWidget(self.radio_status_par, 7, 1, 1, 1)
-        layout_variable.addWidget(self.radio_status_psn, 7, 2, 1, 1)
-        layout_variable.addWidget(self.radio_status_frz, 8, 0, 1, 1)
-        layout_variable.addWidget(self.radio_status_slp, 8, 1, 1, 1)
-        layout_variable.addWidget(self.radio_status_none, 8, 2, 1, 1)
+        layout_variable.addWidget(self.label_status, 8, 0, 1, 6)
+        layout_variable.addWidget(self.radio_status_brn, 9, 0, 1, 1)
+        layout_variable.addWidget(self.radio_status_par, 9, 1, 1, 1)
+        layout_variable.addWidget(self.radio_status_psn, 9, 2, 1, 1)
+        layout_variable.addWidget(self.radio_status_frz, 10, 0, 1, 1)
+        layout_variable.addWidget(self.radio_status_slp, 10, 1, 1, 1)
+        layout_variable.addWidget(self.radio_status_none, 10, 2, 1, 1)
 
 
     def createCalculateButton(self, layout_variable):
         self.button_calculate = QtWidgets.QPushButton("Calculate")
-        layout_variable.addWidget(self.button_calculate, 9, 0, 1, 6)
+        layout_variable.addWidget(self.button_calculate, 11, 0, 1, 6)
 
 
     def createResultBox(self, layout_variable):
@@ -114,8 +124,8 @@ class MainWindow(QtWidgets.QWidget):
         self.le_result = QtWidgets.QLineEdit()
         self.le_result.setReadOnly(True)
 
-        layout_variable.addWidget(self.label_result, 10, 0, 1, 6)
-        layout_variable.addWidget(self.le_result, 11, 0, 1, 6)
+        layout_variable.addWidget(self.label_result, 12, 0, 1, 6)
+        layout_variable.addWidget(self.le_result, 13, 0, 1, 6)
 
 
     def connectCalculateButton(self):
