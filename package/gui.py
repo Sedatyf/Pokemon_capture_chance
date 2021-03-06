@@ -10,6 +10,7 @@ class MainWindow(QtWidgets.QWidget):
         self.setWindowTitle("Calculate Pokemon capture chance")
         self.setMinimumSize(355, 320)
         self.setWindowIcon(QtGui.QIcon("img/balls/pokeball.png"))
+        self.setStyleSheet("background-color: rgb(22, 25, 37)")
 
         self.layout = QtWidgets.QGridLayout(self)
 
@@ -35,7 +36,6 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createLevel(self, layout_variable):
-        # SPINBOX ??
         self.label_level = QtWidgets.QLabel("What's the Pokemon's level?")
 
         self.input_pokemon_level = QtWidgets.QSpinBox()
@@ -51,10 +51,11 @@ class MainWindow(QtWidgets.QWidget):
         self.slider_current_hp.setMaximum(100)
         self.slider_current_hp.setMinimum(0)
         self.slider_current_hp.setValue(100)
-        self.slider_current_hp.setStyleSheet("selection-background-color: rgb(0, 255, 0)")
 
         layout_variable.addWidget(self.label_hp, 4, 0, 1, 6)
         layout_variable.addWidget(self.slider_current_hp, 5, 0, 1, 6)
+
+        self.changeColorHP()
 
 
     def createBallGroup(self, layout_variable):
@@ -162,13 +163,11 @@ class MainWindow(QtWidgets.QWidget):
 
     def connectWidgets(self):
         if platform.system() == "Linux":
-            self.slider_current_hp.valueChanged.connect(self.changeColorHPLinux)
-        elif platform.system() == "Windows":
-            self.slider_current_hp.valueChanged.connect(self.changeColorHPWindows)
+            self.slider_current_hp.valueChanged.connect(self.changeColorHP)
         self.button_calculate.clicked.connect(self.calculate)
     
 
-    def changeColorHPLinux(self):
+    def changeColorHP(self):
         color = ""
         if 50 <= self.slider_current_hp.value() <= 100:
             color = "rgb(0, 255, 0)"
@@ -176,37 +175,29 @@ class MainWindow(QtWidgets.QWidget):
             color = "rgb(255, 153, 0)"
         elif 0 <= self.slider_current_hp.value() < 20:
             color = "rgb(255, 0, 0)"
-        
-        self.slider_current_hp.setStyleSheet(f"selection-background-color: {color}")
-
-    def changeColorHPWindows(self):
-        color = ""
-        if 50 <= self.slider_current_hp.value() <= 100:
-            color = "rgb(0, 255, 0)"
-        elif 20 <= self.slider_current_hp.value() < 50:
-            color = "rgb(255, 153, 0)"
-        elif 0 <= self.slider_current_hp.value() < 20:
-            color = "rgb(255, 0, 0)"
-
-        style = """
+        if platform.system() == "Windows":
+            style = """
             QSlider::groove:horizontal {
-            border: 1px solid #999999;
-            height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-            background: """ + color + """;
-            margin: 2px 0;
+                border: 1px solid #D6D6D6;
+                height: 2px
+                background: """ + color + """;
             }
-
             QSlider::handle:horizontal {
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
-            border: 1px solid #5c5c5c;
-            width: 18px;
-            margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
-            border-radius: 3px;
+                background-color: #007AD9;
+                width: 10px;
+                margin: -10px 0px;
+            }
+            QSlider::handle:horizontal:hover {
+                background-color: #171717;
+            }
+            QSlider::handle:horizontal:pressed {
+                background-color: #CCCCCC;
             }"""
-        
-        self.slider_current_hp.setStyleSheet(style)
+            self.slider_current_hp.setStyleSheet(style)
+        else:
+            self.slider_current_hp.setStyleSheet(f"selection-background-color: {color}")
 
-
+    
     def calculate(self):
         pokemon_name = self.input_pokemon_name.text()
         level = int(self.input_pokemon_level.text())
