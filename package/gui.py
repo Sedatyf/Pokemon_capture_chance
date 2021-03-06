@@ -33,6 +33,7 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createLevel(self, layout_variable):
+        # SPINBOX ??
         self.label_level = QtWidgets.QLabel("What's the Pokemon's level?")
 
         self.input_pokemon_level = QtWidgets.QLineEdit()
@@ -54,6 +55,7 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def createBallGroup(self, layout_variable):
+        # ICON (voir internet)
         self.bgroupBall = QtWidgets.QButtonGroup(self)
 
         self.label_ball = QtWidgets.QLabel("What Pokeball will you use?")
@@ -79,6 +81,7 @@ class MainWindow(QtWidgets.QWidget):
     
 
     def createStatusGroup(self, layout_variable):
+        # ICON (voir internet)
         self.bgroupStatus = QtWidgets.QButtonGroup(self)
 
         self.label_status = QtWidgets.QLabel("Does the Pokemon suffor from a status?")
@@ -126,7 +129,7 @@ class MainWindow(QtWidgets.QWidget):
         self.le_result.setReadOnly(True)
 
         layout_variable.addWidget(self.label_result, 12, 0, 1, 6)
-        layout_variable.addWidget(self.le_result, 13, 0, 1, 6)
+        layout_variable.addWidget(self.le_result, 13, 0, 2, 6)
 
 
     def connectCalculateButton(self):
@@ -136,9 +139,12 @@ class MainWindow(QtWidgets.QWidget):
     def calculate(self):
         pokemon_name = self.input_pokemon_name.text()
         level = int(self.input_pokemon_level.text())
-        ball = self.bgroupBall.checkedId()
-        status = self.bgroupStatus.checkedId()
+        radio_ball = self.bgroupBall.checkedId()
+        radio_status = self.bgroupStatus.checkedId()
         current_hp = int(self.slider_current_hp.sliderPosition())
+
+        ball = pokeapi.get_bonus_ball(radio_ball)
+        status = pokeapi.get_bonus_status(radio_status)
 
         capture_rate = pokeapi.get_capture_rate(pokemon_name)
         base_hp = pokeapi.get_base_hp(pokemon_name)
@@ -146,8 +152,8 @@ class MainWindow(QtWidgets.QWidget):
         current_hp = calculate.calculate_current_hp(current_hp, max_hp)
         a = calculate.calculate_a(current_hp, max_hp, capture_rate, ball, status)
 
-        print(base_hp)
-        print(max_hp)
-        print(current_hp)
-        print(a)
-
+        if a >= 255:
+            self.le_result.setText(f"You have a 100% chance to capture {pokemon_name}!")
+        else:
+            p = calculate.calculate_capture_chance(a)
+            self.le_result.setText(f"You have, approximately, a {p * 100}% chance to capture {pokemon_name} per ball with the chosen ball.")
