@@ -181,8 +181,11 @@ class MainWindow(QtWidgets.QWidget):
             QSlider::groove:horizontal {
                 border: 1px solid #D6D6D6;
                 height: 2px;
-                background: """ + color + """;
+                background: lightgrey;
             }
+            
+            QSlider::sub-page:horizontal{ background-color: """ + color + """; border: 4px}
+            
             QSlider::handle:horizontal {
                 background-color: #007AD9;
                 width: 10px;
