@@ -11,3 +11,4 @@ env/
 # Export
 *.zip
 dist/
+main.spec
