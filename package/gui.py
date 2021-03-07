@@ -37,10 +37,13 @@ class MainWindow(QtWidgets.QWidget):
     def createLevel(self, layout_variable):
         self.label_level = QtWidgets.QLabel("What's the Pokemon's level?")
 
-        self.input_pokemon_level = QtWidgets.QSpinBox()
+        self.spin_pokemon_level = QtWidgets.QSpinBox()
+        self.spin_pokemon_level.setValue(1)
+        self.spin_pokemon_level.setMinimum(1)
+        self.spin_pokemon_level.setMaximum(100)
         
         layout_variable.addWidget(self.label_level, 2, 0, 1, 6)
-        layout_variable.addWidget(self.input_pokemon_level, 3, 0, 1, 1)
+        layout_variable.addWidget(self.spin_pokemon_level, 3, 0, 1, 1)
 
 
     def createSliderHP(self, layout_variable):
@@ -199,7 +202,7 @@ class MainWindow(QtWidgets.QWidget):
     
     def calculate(self):
         pokemon_name = self.input_pokemon_name.text()
-        level = int(self.input_pokemon_level.text())
+        level = int(self.spin_pokemon_level.text())
         radio_ball = self.bgroupBall.checkedId()
         radio_status = self.bgroupStatus.checkedId()
         current_hp = int(self.slider_current_hp.sliderPosition())
