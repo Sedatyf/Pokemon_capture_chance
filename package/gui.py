@@ -164,8 +164,7 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def connectWidgets(self):
-        if platform.system() == "Linux":
-            self.slider_current_hp.valueChanged.connect(self.changeColorHP)
+        self.slider_current_hp.valueChanged.connect(self.changeColorHP)
         self.button_calculate.clicked.connect(self.calculate)
     
 
@@ -181,7 +180,7 @@ class MainWindow(QtWidgets.QWidget):
             style = """
             QSlider::groove:horizontal {
                 border: 1px solid #D6D6D6;
-                height: 2px
+                height: 2px;
                 background: """ + color + """;
             }
             QSlider::handle:horizontal {
