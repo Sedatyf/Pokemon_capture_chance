@@ -20,10 +20,10 @@ jobs:
         path: src
 
     - name: Copy img/ folder
-    - run: cp src/img/ src/dist/windows/main
+      run: cp src/img/ src/dist/windows/main
 
     - name: Upload Artifact
-    - uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
         name: PCC-Windows
         path: src/dist/windows/main
