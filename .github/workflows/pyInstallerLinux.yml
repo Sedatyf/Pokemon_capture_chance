@@ -12,14 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Pull Project
+      uses: actions/checkout@v2
 
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-linux@main
       with:
         path: src
 
-    - uses: actions/upload-artifact@v2
+    - name: Copy img/ folder
+      run: cp -r src/img/ src/dist/windows/main
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
         name: PCC-Linux
         path: src/dist/linux/main
