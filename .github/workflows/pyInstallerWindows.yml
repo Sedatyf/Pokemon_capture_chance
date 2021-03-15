@@ -1,4 +1,4 @@
-name: Package Application with Pyinstaller for Linux
+name: Package Application with Pyinstaller for Windows
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Package Application
-      uses: JackMcKew/pyinstaller-action-linux@main
+      uses: JackMcKew/pyinstaller-action-windows@main
       with:
         path: src
         spec: src/main_windows.spec
