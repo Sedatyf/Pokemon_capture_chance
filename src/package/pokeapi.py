@@ -2,8 +2,13 @@ from lxml import html, etree
 import requests
 
 
+def check_pokemon_name(pokemon):
+    page = requests.get(f"https://www.pokepedia.fr/{pokemon.title()}")
+    return page.status_code
+
+
 def get_capture_rate(pokemon):
-    page = requests.get(f"https://www.pokepedia.fr/{pokemon.lower()}")
+    page = requests.get(f"https://www.pokepedia.fr/{pokemon.title()}")
     html_tree = html.fromstring(page.content)
     etree_object = html_tree.xpath("(//td[@colspan='3'])[14]/text()")
     capture_rate = int(etree_object[0])
@@ -12,7 +17,7 @@ def get_capture_rate(pokemon):
 
 
 def get_base_hp(pokemon):
-    page = requests.get(f"https://www.pokepedia.fr/{pokemon.lower()}")
+    page = requests.get(f"https://www.pokepedia.fr/{pokemon.title()}")
     html_tree = html.fromstring(page.content)
     etree_object = html_tree.xpath("(//td[contains(., 'PV')]/following-sibling::td)[1]/text()")
     base_hp = int(str(etree_object[0]).replace("\n", ""))

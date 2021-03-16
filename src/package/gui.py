@@ -202,12 +202,27 @@ class MainWindow(QtWidgets.QWidget):
             self.slider_current_hp.setStyleSheet(f"selection-background-color: {color}")
 
     
+    def show_pokemon_name_error(self):
+        self.msgBox = QtWidgets.QMessageBox()
+        self.msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+
+        self.msgBox.setText("Pokemon name not found!")
+        self.msgBox.setWindowTitle("Error!")
+        self.msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        self.msgBox.exec_()
+
+
     def calculate(self):
         pokemon_name = self.input_pokemon_name.text()
         level = int(self.spin_pokemon_level.text())
         radio_ball = self.bgroupBall.checkedId()
         radio_status = self.bgroupStatus.checkedId()
         current_hp = int(self.slider_current_hp.sliderPosition())
+
+        status_code = pokeapi.check_pokemon_name(pokemon_name)
+        if status_code != 200:
+            self.show_pokemon_name_error()
+            return
 
         ball = pokeapi.get_bonus_ball(radio_ball)
         status = pokeapi.get_bonus_status(radio_status)
