@@ -9,7 +9,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.setWindowTitle("Calculate Pokemon capture chance")
         self.setMinimumSize(355, 320)
-        self.setWindowIcon(QtGui.QIcon("img/balls/pokeball.png"))
+        self.setWindowIcon(QtGui.QIcon("src/img/balls/pokeball.png"))
 
         self.layout = QtWidgets.QGridLayout(self)
 
@@ -69,9 +69,9 @@ class MainWindow(QtWidgets.QWidget):
         self.radio_superball = QtWidgets.QRadioButton()
         self.radio_hyperball = QtWidgets.QRadioButton()
 
-        self.icon_pokeball = QtGui.QIcon("img/balls/pokeball.png")
-        self.icon_superball = QtGui.QIcon("img/balls/superball.png")
-        self.icon_hyperball = QtGui.QIcon("img/balls/hyperball.png")
+        self.icon_pokeball = QtGui.QIcon("src/img/balls/pokeball.png")
+        self.icon_superball = QtGui.QIcon("src/img/balls/superball.png")
+        self.icon_hyperball = QtGui.QIcon("src/img/balls/hyperball.png")
 
         self.radio_pokeball.setIcon(self.icon_pokeball)
         self.radio_pokeball.setIconSize(QtCore.QSize(36, 36))
@@ -108,11 +108,11 @@ class MainWindow(QtWidgets.QWidget):
         self.radio_status_slp = QtWidgets.QRadioButton()
         self.radio_status_none = QtWidgets.QRadioButton("None")
 
-        self.icon_brn = QtGui.QIcon("img/status/status_brn.png")
-        self.icon_par = QtGui.QIcon("img/status/status_par.png")
-        self.icon_psn = QtGui.QIcon("img/status/status_psn.png")
-        self.icon_frz = QtGui.QIcon("img/status/status_frz.png")
-        self.icon_slp = QtGui.QIcon("img/status/status_slp.png")
+        self.icon_brn = QtGui.QIcon("src/img/status/status_brn.png")
+        self.icon_par = QtGui.QIcon("src/img/status/status_par.png")
+        self.icon_psn = QtGui.QIcon("src/img/status/status_psn.png")
+        self.icon_frz = QtGui.QIcon("src/img/status/status_frz.png")
+        self.icon_slp = QtGui.QIcon("src/img/status/status_slp.png")
 
         self.radio_status_brn.setIcon(self.icon_brn)
         self.radio_status_brn.setIconSize(QtCore.QSize(60, 24))
