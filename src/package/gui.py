@@ -208,6 +208,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.msgBox.setText("Pokemon name not found!")
         self.msgBox.setWindowTitle("Error!")
+        self.msgBox.setWindowIcon(QtGui.QIcon("img/balls/pokeball.png"))
         self.msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         self.msgBox.exec_()
 
