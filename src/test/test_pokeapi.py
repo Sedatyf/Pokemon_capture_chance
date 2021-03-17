@@ -25,6 +25,7 @@ def test_check_pokemon_name(input_pokemon_name: str, expected_status_code: int):
 )
 def test_capture_rate(input_pokemon_name: str, expected_capture_rate: int):
     assert pokeapi.get_capture_rate(input_pokemon_name) == expected_capture_rate
+    assert type(pokeapi.get_capture_rate(input_pokemon_name)) == int
 
 
 @pytest.mark.parametrize(
@@ -37,3 +38,4 @@ def test_capture_rate(input_pokemon_name: str, expected_capture_rate: int):
 )
 def test_base_hp(input_pokemon_name: str, expected_base_hp: int):
     assert pokeapi.get_base_hp(input_pokemon_name) == expected_base_hp
+    assert type(pokeapi.get_base_hp(input_pokemon_name)) == int
