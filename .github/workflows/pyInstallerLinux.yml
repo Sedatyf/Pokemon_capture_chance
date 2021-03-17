@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Pull Project
+      uses: actions/checkout@v2
+
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-linux@main
       with:
